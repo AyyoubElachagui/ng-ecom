@@ -1,0 +1,5 @@
+.ng-select-container {
+    border-bottom: 1px solid red !important;
+    background-color: black !important ;
+    color: white !important;
+ }

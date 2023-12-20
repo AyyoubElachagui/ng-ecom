@@ -1,0 +1,18 @@
+<div class="w-full py-4 px-8 bg-black flex justify-between">
+    <div>
+        <h1 class="text-white md:text-xl text-md">Ayyoub El achagui <span class="text-slate-500 md:text-sm text-xs">Presented by ayyoub elachagui</span></h1>
+    </div>
+    <div class="form-group col-md-6 w-14">
+        <ng-select (change)="onLanguagedChanged($event)" (ngModel)="selectedLanguage" class="bg-black" appearance="outline" [markFirst]="true" [searchable]="false" [clearable]="false" labelForId="id" 
+        bindLabel="iso"
+        bindValue="id"
+        formControlName="id">
+            <ng-option  *ngFor="let language of languages" [value]="language.id">
+                <div class="flex justify-content-center bg-white text-black rounded">
+                    <img class="m-1" [src]='language.icon' width="25px"/>
+                    <p class="text-lg bold m-1">{{language.iso}}</p>
+                </div>
+            </ng-option>
+        </ng-select>
+    </div>
+</div>
