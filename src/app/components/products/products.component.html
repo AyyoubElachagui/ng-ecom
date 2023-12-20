@@ -1,0 +1,6 @@
+<div *ngIf="!isLoading" class="grid grid-cols-4 gap-4 m-4">
+    <div *ngFor="let product of products">
+        <app-card [product]="product"></app-card>
+    </div>
+</div>
+<app-loading [isLoading]="isLoading"></app-loading>
