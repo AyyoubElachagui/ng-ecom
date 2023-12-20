@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ProductsService } from '../../../services/api/products.service';
+import { ProductsService } from '../../../services/api/products/products.service';
 import { ProductsModel } from '../../../services/models/products.model';
 import { LoadingComponent } from '../../../shared/components/loading/loading.component';
 import { NgIf } from '@angular/common';

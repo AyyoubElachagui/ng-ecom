@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ProductsModel } from '../models/products.model';
-import { environment } from '../../shared/environment/environment';
+import { ProductsModel } from '../../models/products.model';
+import { environment } from '../../../shared/environment/environment';
 
 @Injectable({
   providedIn: 'any'
