@@ -26,7 +26,7 @@ export class ProductsDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe(params => {
-      this.productsService.getProductById(params['productId']).subscribe({
+      this.productsService.getById(params['productId']).subscribe({
         next: (data) => {
           this.product = data;
           this.isLoading = false;

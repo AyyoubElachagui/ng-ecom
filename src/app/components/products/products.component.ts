@@ -4,7 +4,6 @@ import { ProductsModel } from '../../services/models/products.model';
 import { NgFor, NgIf } from '@angular/common';
 import { CardComponent } from './card/card.component';
 import { LoadingComponent } from '../../shared/components/loading/loading.component';
-import { CategoriesService } from '../../services/api/categories/categories.service';
 import { SliderComponent } from './categories/slider/slider.component';
 
 @Component({
@@ -14,7 +13,7 @@ import { SliderComponent } from './categories/slider/slider.component';
     NgFor,
     NgIf,
     CardComponent,
-    SliderComponent,
+    // SliderComponent,
     LoadingComponent
   ],
   templateUrl: './products.component.html',
@@ -31,7 +30,7 @@ export class ProductsComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.productsService.getAllProducts().subscribe({
+    this.productsService.get().subscribe({
       next: (data: ProductsModel[]):void => {
         this.products = data;
         this.isLoadingProducts = false;

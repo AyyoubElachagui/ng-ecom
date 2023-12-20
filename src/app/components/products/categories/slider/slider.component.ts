@@ -14,18 +14,18 @@ import { NgFor } from '@angular/common';
 export class SliderComponent implements OnInit {
 
   constructor(
-    private categoriesService: CategoriesService
+    // private categoriesService: CategoriesService
   ){}
   
   categories: string[] = [];
   isLoadingCategories: boolean = true;
 
   ngOnInit(): void {
-    this.categoriesService.getAllCategories().subscribe({
-      next: (data: string[]): void => {
-        this.categories = data;
-        this.isLoadingCategories = false;
-      }
-    })
+    // this.categoriesService.get().subscribe({
+    //   next: (data: string[]): void => {
+    //     this.categories = data;
+    //     this.isLoadingCategories = false;
+    //   }
+    // })
   }
 }
