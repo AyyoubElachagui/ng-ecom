@@ -1,1 +1,9 @@
-<p *ngFor="let category of categories">{{category}}</p>
+<div>
+    <h3 class="w-full bg-slate-100 p-3 text-xl">Filter by category</h3>
+    <div class="grid grid-cols-8 gap-4 m-4">
+        <div *ngFor="let category of categories">
+            <button (click)="onSelectCategory(category)" class="bg-[#1C274C] text-white py-2 px-4 rounded-full custom-shadow text-center text-sm">
+                {{category}}</button>
+        </div>
+    </div>
+</div>

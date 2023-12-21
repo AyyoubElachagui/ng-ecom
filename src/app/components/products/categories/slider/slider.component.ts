@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CategoriesService } from '../../../../services/api/categories/categories.service';
 import { NgFor } from '@angular/common';
 
@@ -13,12 +13,16 @@ import { NgFor } from '@angular/common';
 })
 export class SliderComponent implements OnInit {
 
+
   constructor(
     private categoriesService: CategoriesService
   ){}
   
   categories: string[] = [];
   isLoadingCategories: boolean = true;
+
+  @Output()
+  onSelecetCategory: EventEmitter<string> = new EventEmitter<string>();
 
   ngOnInit(): void {
     this.categoriesService.getAllCategories().subscribe({
@@ -28,4 +32,9 @@ export class SliderComponent implements OnInit {
       }
     })
   }
+
+  onSelectCategory = (category: string): void => {
+    this.onSelecetCategory.emit(category);
+  }
+
 }

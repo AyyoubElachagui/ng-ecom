@@ -4,7 +4,7 @@ import { environment } from '../../../shared/environment/environment';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
 export class CategoriesService {
   private apiUrl = environment.fakeStore.apiUrl;

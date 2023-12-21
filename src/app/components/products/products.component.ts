@@ -27,15 +27,25 @@ export class ProductsComponent implements OnInit {
   ){}
 
   products: ProductsModel[] = [];
+  _productsForFilter: ProductsModel[] = [];
   isLoadingProducts: boolean = true;
 
 
   ngOnInit(): void {
+    this.getAllProducts();
+  }
+
+  getAllProducts = () => {
     this.productsService.getAllProducts().subscribe({
       next: (data: ProductsModel[]):void => {
         this.products = data;
+        this._productsForFilter = data;
         this.isLoadingProducts = false;
       }
     });
+  } 
+
+  onCategorySelected = ($event: string) => {
+    this.products = this._productsForFilter.filter(e => e.category === $event);
   }
 }
