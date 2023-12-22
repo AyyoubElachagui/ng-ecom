@@ -25,8 +25,9 @@ export class SliderComponent implements OnInit {
   onSelecetCategory: EventEmitter<string> = new EventEmitter<string>();
 
   ngOnInit(): void {
-    this.categoriesService.getAllCategories().subscribe({
+    this.categoriesService.get().subscribe({
       next: (data: string[]): void => {
+        console.log(data);
         this.categories = data;
         this.isLoadingCategories = false;
       }

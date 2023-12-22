@@ -36,7 +36,7 @@ export class ProductsComponent implements OnInit {
   }
 
   getAllProducts = () => {
-    this.productsService.getAllProducts().subscribe({
+    this.productsService.get().subscribe({
       next: (data: ProductsModel[]):void => {
         this.products = data;
         this._productsForFilter = data;
