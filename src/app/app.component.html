@@ -1,8 +1,13 @@
-<app-header></app-header>
-<div class="grid grid-rows-12 grid-flow-col gap-4">
-    <app-leftbar></app-leftbar>
-    <div class="md:col-span-8 col-span-12">
-        <router-outlet></router-outlet>
+<div *ngIf="userStorage != null">
+    <app-header></app-header>
+    <div class="grid grid-rows-12 grid-flow-col gap-4">
+        <app-leftbar></app-leftbar>
+        <div class="md:col-span-8 col-span-12">
+            <router-outlet></router-outlet>
+        </div>
     </div>
+</div>
+<div *ngIf="userStorage == null">
+    <router-outlet></router-outlet>
 </div>
 <!--  -->

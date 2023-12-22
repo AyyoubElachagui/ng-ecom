@@ -1,11 +1,11 @@
-import { RatingModel } from "./rating.model";
+import { TRating } from "./rating.interface";
 
-export interface ProductsModel {
+export interface TProducts {
   id: number,
   title: string,
   price: number,
   description: string,
   category: string,
   image: string,
-  rating: RatingModel
+  rating: TRating
 }

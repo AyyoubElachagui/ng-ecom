@@ -1,13 +1,15 @@
-import { Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { UsersManagerComponent } from './components/users-manager/users-manager.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ProductsDetailsComponent } from './components/products/products-details/products-details.component';
+import { NgModule } from '@angular/core';
+import { LoginComponent } from './components/auth/login/login.component';
 
 export const routes: Routes = [
     {
-        path: '',
-        component: HomeComponent
+        path: 'login',
+        component: LoginComponent
     },
     {
         path: 'home',
@@ -24,5 +26,17 @@ export const routes: Routes = [
     {
         path: 'users/manager',
         component: UsersManagerComponent
-    }
+    },
+    { 
+        path: '', 
+        redirectTo: '/home', 
+        pathMatch: 'full'
+    },
 ];
+
+@NgModule({
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
+})
+
+export class AppRoutingModule { }

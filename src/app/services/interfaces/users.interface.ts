@@ -1,4 +1,4 @@
-export interface UserModel{
+export interface TUser{
     id: number,
     email: string,
     first_name: string,

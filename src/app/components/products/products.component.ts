@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../services/api/products/products.service';
-import { ProductsModel } from '../../services/models/products.model';
+import { TProducts } from '../../services/interfaces/products.interface';
 import { NgFor, NgIf } from '@angular/common';
 import { CardComponent } from './card/card.component';
 import { LoadingComponent } from '../../shared/components/loading/loading.component';
-import { CategoriesService } from '../../services/api/categories/categories.service';
 import { SliderComponent } from './categories/slider/slider.component';
 
 @Component({
@@ -26,8 +25,8 @@ export class ProductsComponent implements OnInit {
     private productsService: ProductsService
   ){}
 
-  products: ProductsModel[] = [];
-  _productsForFilter: ProductsModel[] = [];
+  products: TProducts[] = [];
+  _productsForFilter: TProducts[] = [];
   isLoadingProducts: boolean = true;
 
 
@@ -37,7 +36,7 @@ export class ProductsComponent implements OnInit {
 
   getAllProducts = () => {
     this.productsService.get().subscribe({
-      next: (data: ProductsModel[]):void => {
+      next: (data: TProducts[]):void => {
         this.products = data;
         this._productsForFilter = data;
         this.isLoadingProducts = false;

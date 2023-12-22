@@ -1,13 +1,13 @@
-import { Inject, Injectable, InjectionToken } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import { Base } from '../models/base.model';
+import { TBase } from '../interfaces/base.interface';
 
 @Injectable({
   providedIn: 'any'
 })
-export class BaseService<T extends Base> {
+export class BaseService<T extends TBase> {
   apiUrl: string = '';
   endpoint: string = '';
 

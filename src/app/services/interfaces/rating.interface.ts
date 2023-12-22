@@ -1,4 +1,4 @@
-export interface RatingModel {
+export interface TRating {
     rate: number,
     count: number
 }

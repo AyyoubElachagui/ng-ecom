@@ -26,14 +26,14 @@
 // }
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ProductsModel } from '../../models/products.model';
+import { TProducts } from '../../interfaces/products.interface';
 import { environment } from '../../../shared/environment/environment';
 import { BaseService } from '../base-service.service';
 
 @Injectable({
   providedIn: 'any'
 })
-export class ProductsService extends BaseService<ProductsModel> {
+export class ProductsService extends BaseService<TProducts> {
 
   constructor(
     protected http: HttpClient
