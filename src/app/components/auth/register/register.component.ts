@@ -1,26 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../../../services/api/auth/login/login.service';
+import { SkeletonComponent } from "../../../shared/components/skeleton/skeleton.component";
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { LoginService } from '../../../services/api/auth/login/login.service';
 import { AuthLocalstorageService } from '../../../services/localstorage/auth-localstorage/auth-localstorage.service';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { SkeletonComponent } from "../../../shared/components/skeleton/skeleton.component";
 
 @Component({
-    selector: 'app-login',
+    selector: 'app-register',
     standalone: true,
-    templateUrl: './login.component.html',
-    styleUrl: './login.component.css',
+    templateUrl: './register.component.html',
+    styleUrl: './register.component.css',
     imports: [
       ReactiveFormsModule, 
       CommonModule, 
       FormsModule, 
       SkeletonComponent,
       RouterLink, 
-      RouterLinkActive
+      RouterLinkActive 
     ]
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
   loginForm?: FormGroup;
 
   constructor(
@@ -56,5 +56,4 @@ export class LoginComponent implements OnInit {
       })
     }
   }
-
 }
