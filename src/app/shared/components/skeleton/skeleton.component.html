@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="isDashboard">
     <app-header></app-header>
     <div class="grid grid-rows-12 grid-flow-col gap-4">
         <app-leftbar></app-leftbar>
@@ -6,4 +6,11 @@
             <ng-content></ng-content>
         </div>
     </div>
+</div>
+<div  *ngIf="!isDashboard">
+    <app-global-header></app-global-header>
+    <app-global-navbar></app-global-navbar>
+    <ng-content></ng-content>
+    <app-footer></app-footer>
+    <app-copyright></app-copyright>
 </div>

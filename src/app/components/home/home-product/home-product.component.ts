@@ -2,16 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../../services/api/products/products.service';
 import { TProducts } from '../../../services/interfaces/products.interface';
 import { CommonModule, NgFor } from '@angular/common';
+import { ProductCardComponent } from "../../../shared/components/product-card/product-card.component";
 
 @Component({
-  selector: 'app-home-product',
-  standalone: true,
-  imports: [
-    NgFor,
-    CommonModule
-  ],
-  templateUrl: './home-product.component.html',
-  styleUrl: './home-product.component.css'
+    selector: 'app-home-product',
+    standalone: true,
+    templateUrl: './home-product.component.html',
+    styleUrl: './home-product.component.css',
+    imports: [
+        NgFor,
+        CommonModule,
+        ProductCardComponent
+    ]
 })
 export class HomeProductComponent  implements OnInit {
 
