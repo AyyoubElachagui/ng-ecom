@@ -1,15 +1,17 @@
-<div *ngIf="!isLoadingProducts">
-    <app-slider
-    (onSelecetCategory)="onCategorySelected($event)"
-    ></app-slider>
-    <div class="w-full bg-slate-100 p-3 flex justify-between items-center"> 
-        <h3 class="text-xl">Products ({{products.length}})</h3>
-        <img (click)="getAllProducts()" src="assets/svgs/refresh.svg" alt="" width="20px" class="mr-2">
-    </div>
-    <div class="grid grid-cols-4 gap-4 m-4">
-        <div *ngFor="let product of products">
-            <app-card [product]="product"></app-card>
+<app-skeleton>
+    <div *ngIf="!isLoadingProducts">
+        <app-slider
+        (onSelecetCategory)="onCategorySelected($event)"
+        ></app-slider>
+        <div class="w-full bg-slate-100 p-3 flex justify-between items-center"> 
+            <h3 class="text-xl">Products ({{products.length}})</h3>
+            <img (click)="getAllProducts()" src="assets/svgs/refresh.svg" alt="" width="20px" class="mr-2">
+        </div>
+        <div class="grid grid-cols-4 gap-4 m-4">
+            <div *ngFor="let product of products">
+                <app-card [product]="product"></app-card>
+            </div>
         </div>
     </div>
-</div>
-<app-loading [isLoading]="isLoadingProducts"></app-loading>
+    <app-loading [isLoading]="isLoadingProducts"></app-loading>
+</app-skeleton>

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ProductsModel } from '../../../services/models/products.model';
+import { TProducts } from '../../../services/interfaces/products.interface';
 import { NgIf } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
@@ -13,7 +13,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 export class CardComponent {
 
   @Input()
-  product?: ProductsModel;
+  product?: TProducts;
 
   limitedDescription = (value: string): string => {
     return value.length > 30 ? value.substring(0, 30) + '...' : value;
