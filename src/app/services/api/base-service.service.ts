@@ -34,6 +34,15 @@ export class BaseService<T extends TBase> {
       )
   }
 
+  getSignal(): Observable<T> {
+    return this.httpClient
+      .get<T>(`${this.apiUrl}/${this.endpoint}`)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)        
+      )
+  }
+
   getById(id: number): Observable<T> {
     return this.httpClient
       .get<T>(`${this.apiUrl}/${this.endpoint}/${id}`)

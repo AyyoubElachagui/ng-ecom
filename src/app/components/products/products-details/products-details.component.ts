@@ -5,16 +5,18 @@ import { ProductsService } from '../../../services/api/products/products.service
 import { TProducts } from '../../../services/interfaces/products.interface';
 import { LoadingComponent } from '../../../shared/components/loading/loading.component';
 import { NgIf } from '@angular/common';
+import { SkeletonComponent } from "../../../shared/components/skeleton/skeleton.component";
 
 @Component({
-  selector: 'app-products-details',
-  standalone: true,
-  imports: [
-    LoadingComponent,
-    NgIf
-  ],
-  templateUrl: './products-details.component.html',
-  styleUrl: './products-details.component.css'
+    selector: 'app-products-details',
+    standalone: true,
+    templateUrl: './products-details.component.html',
+    styleUrl: './products-details.component.css',
+    imports: [
+        LoadingComponent,
+        NgIf,
+        SkeletonComponent
+    ]
 })
 export class ProductsDetailsComponent implements OnInit {
   private routeSub?: Subscription;

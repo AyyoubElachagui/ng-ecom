@@ -24,21 +24,6 @@ import { constants } from './shared/constants/constants';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements OnInit{
-
-  constructor(
-    private localStorageService: LocalStorageService<TUserRes>,
-    private route: Router,
-  ){}
-
-  userStorage?: TUserRes | null;
-
-  ngOnInit(): void {
-    // this.userStorage = this.localStorageService.getItem(constants.user);
-    // if(this.userStorage == null){
-    //   this.route.navigateByUrl('/login');
-    //   return;
-    // }
-  }
+export class AppComponent {
 
 }

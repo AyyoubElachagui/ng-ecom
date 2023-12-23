@@ -1,8 +1,7 @@
-import {TUser} from '../users.interface';
-import {TSupport} from '../supports.interface';
-
 export interface TUserRes {
     id: number,
-    data: TUser,
-    support: TSupport,
+    email: string,
+    first_name: string,
+    last_name: string,
+    avatar: string,
 }
