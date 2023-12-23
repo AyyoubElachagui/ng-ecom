@@ -6,6 +6,7 @@ import { ProductsDetailsComponent } from './components/products/products-details
 import { NgModule } from '@angular/core';
 import { LoginComponent } from './components/auth/login/login.component';
 import { AuthGuard } from './guards/auth.guard';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 export const routes: Routes = [
     {
@@ -15,6 +16,10 @@ export const routes: Routes = [
     {
         path: 'home',
         component: HomeComponent,
+    },
+    {
+        path: 'dashboard',
+        component: DashboardComponent,
         canActivate: [AuthGuard]
     },
     {
