@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
   ){}
 
   isLoading: boolean = false;
+  errorMessage: string;
 
   ngOnInit() {
     this.loginForm = new FormGroup({
@@ -51,6 +52,7 @@ export class LoginComponent implements OnInit {
           this.isLoading = false;
         },
         error: (error) => {
+          this.errorMessage = 'email or password incorrect'
           this.isLoading = false;
         }
       })

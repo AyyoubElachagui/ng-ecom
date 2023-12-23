@@ -12,7 +12,7 @@
                         <label for="email" class="text-gray-600 mb-2 block">Email address</label>
                         <input type="email" name="email" id="email"
                             class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                            placeholder="youremail.@domain.com"formControlName="email">
+                            placeholder="youremail.@domain.com"formControlName="email" autocomplete="email">
                             <div *ngIf="loginForm?.get('email')?.invalid && loginForm?.get('email')?.touched">
                                 <div *ngIf="loginForm?.get('email')?.errors?.['required']" class="text-xs text-red-600 my-2">Email is required.</div>
                                 <div *ngIf="loginForm?.get('email')?.errors?.['email']" class="text-xs text-red-600 my-2">Invalid email format.</div>
@@ -22,11 +22,14 @@
                         <label for="password" class="text-gray-600 mb-2 block">Password</label>
                         <input type="password" name="password" id="password"
                             class="block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400"
-                            placeholder="*******" formControlName="password">
+                            placeholder="*******" formControlName="password" autocomplete="cc-csc">
                             <div *ngIf="loginForm?.get('password')?.invalid && loginForm?.get('password')?.touched">
                                 <div *ngIf="loginForm?.get('password')?.errors?.['required']" class="text-xs text-red-600 my-2">Password is required.</div>
                             </div>
                     </div>
+                </div>
+                <div *ngIf="errorMessage != null">
+                    <div class="text-xs text-red-600 my-2">{{errorMessage}}</div>
                 </div>
                 <div class="flex items-center justify-between mt-6">
                     <div class="flex items-center">

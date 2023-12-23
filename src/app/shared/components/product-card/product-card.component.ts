@@ -18,6 +18,6 @@ export class ProductCardComponent {
   product: TProducts;
 
   limitedDescription = (): string => {
-    return this.product.title.length > 20 ? this.product.title.substring(0, 20) + '...' : this.product.title;
+    return this.product.title.length > 15 ? this.product.title.substring(0, 15) + '...' : this.product.title;
   }
 }
