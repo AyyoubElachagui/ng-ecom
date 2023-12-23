@@ -1,4 +1,6 @@
-<app-skeleton>
+<app-skeleton
+[isDashboard]="true"
+>
     <div *ngIf="!isLoadingProducts">
         <app-slider
         (onSelecetCategory)="onCategorySelected($event)"
