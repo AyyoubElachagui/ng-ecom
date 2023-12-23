@@ -3,16 +3,18 @@ import { ProductsService } from '../../../services/api/products/products.service
 import { TProducts } from '../../../services/interfaces/products.interface';
 import { CommonModule, NgFor } from '@angular/common';
 import { Subscription } from 'rxjs';
+import { ProductCardComponent } from "../../../shared/components/product-card/product-card.component";
 
 @Component({
-  selector: 'app-new-arrival',
-  standalone: true,
-  imports: [
-    NgFor,
-    CommonModule
-  ],
-  templateUrl: './new-arrival.component.html',
-  styleUrl: './new-arrival.component.css'
+    selector: 'app-new-arrival',
+    standalone: true,
+    templateUrl: './new-arrival.component.html',
+    styleUrl: './new-arrival.component.css',
+    imports: [
+        NgFor,
+        CommonModule,
+        ProductCardComponent
+    ]
 })
 export class NewArrivalComponent implements OnInit {
 
