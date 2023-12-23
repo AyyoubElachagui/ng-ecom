@@ -1,46 +1,52 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../../services/api/auth/login/login.service';
-import { LocalStorageService } from '../../../services/localstorage/localstorage.service';
-import { TUserRes } from '../../../services/interfaces/res/user-res.interface';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { AuthLocalstorageService } from '../../../services/localstorage/auth-localstorage/auth-localstorage.service';
 import { Router } from '@angular/router';
-import { constants } from '../../../shared/constants/constants';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [],
+  imports: [ReactiveFormsModule, CommonModule, FormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent implements OnInit {
-  public form?: FormGroup;
+  loginForm?: FormGroup;
 
   constructor(
-    private readonly _fb: FormBuilder,
     private loginService: LoginService,
-    private localStorageService: LocalStorageService<TUserRes>,
-    private route: Router,
-  ){
-    
-  }
+    private authLSService: AuthLocalstorageService,
+    private router: Router,
+  ){}
 
-  userStorage?: TUserRes | null;
+  isLoading: boolean = false;
 
-
-  ngOnInit(): void {
-    this.userStorage = this.localStorageService.getItem(constants.user);
-    if(this.userStorage){
-      this.route.navigateByUrl('/');
-      return ;
+  ngOnInit() {
+    this.loginForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', Validators.required)
+    });
+    const token = this.authLSService.get();
+    if(token !== null){
+      this.router.navigateByUrl('/');
     }
   }
-
-  private _createForm(): void {
-    this.form = this._fb.group({
-      email: [null, [Validators.required, Validators.email]],
-      password: [null, [Validators.required]],
-    });
+  onSubmit() {
+    this.isLoading = true;
+    if (this.loginForm?.valid) {
+      this.loginService.create(this.loginForm.value).subscribe({
+        next: (data) => {
+          this.router.navigateByUrl('/');
+          this.authLSService.set(data.token);
+          this.isLoading = false;
+        },
+        error: (error) => {
+          this.isLoading = false;
+        }
+      })
+    }
   }
 
 }

@@ -5,19 +5,21 @@ import { NgFor, NgIf } from '@angular/common';
 import { CardComponent } from './card/card.component';
 import { LoadingComponent } from '../../shared/components/loading/loading.component';
 import { SliderComponent } from './categories/slider/slider.component';
+import { SkeletonComponent } from "../../shared/components/skeleton/skeleton.component";
 
 @Component({
-  selector: 'app-products',
-  standalone: true,
-  imports: [
-    NgFor,
-    NgIf,
-    CardComponent,
-    SliderComponent,
-    LoadingComponent
-  ],
-  templateUrl: './products.component.html',
-  styleUrl: './products.component.css'
+    selector: 'app-products',
+    standalone: true,
+    templateUrl: './products.component.html',
+    styleUrl: './products.component.css',
+    imports: [
+        NgFor,
+        NgIf,
+        CardComponent,
+        SliderComponent,
+        LoadingComponent,
+        SkeletonComponent
+    ]
 })
 export class ProductsComponent implements OnInit {
 
