@@ -30,11 +30,14 @@ export class RegisterComponent implements OnInit {
   ){}
 
   isLoading: boolean = false;
+  errorMessage: string;
 
   ngOnInit() {
     this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', Validators.required)
+      name: new FormControl('', [Validators.required]),
+      email: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required),
+      confirm: new FormControl('', [Validators.required]),
     });
     const token = this.authLSService.get();
     if(token !== null){
@@ -43,14 +46,20 @@ export class RegisterComponent implements OnInit {
   }
   onSubmit() {
     this.isLoading = true;
+    console.log("data :: "+JSON.stringify(this.loginForm.value));
     if (this.loginForm?.valid) {
-      this.loginService.create(this.loginForm.value).subscribe({
+      const user = this.loginForm.value;
+      this.loginService.create({
+        email: user.email,
+        password: user.password,
+      }).subscribe({
         next: (data) => {
           this.router.navigateByUrl('/');
           this.authLSService.set(data.token);
           this.isLoading = false;
         },
         error: (error) => {
+          this.errorMessage = 'email or password incorrect'
           this.isLoading = false;
         }
       })
