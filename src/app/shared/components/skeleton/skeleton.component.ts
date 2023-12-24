@@ -26,4 +26,7 @@ export class SkeletonComponent {
   @Input()
   isDashboard: boolean = false;
 
+  @Input()
+  countOfItemsOnCart: number;
+
 }

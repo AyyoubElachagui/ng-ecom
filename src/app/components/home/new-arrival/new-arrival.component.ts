@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ProductsService } from '../../../services/api/products/products.service';
 import { TProducts } from '../../../services/interfaces/products.interface';
 import { CommonModule, NgFor } from '@angular/common';
@@ -21,6 +21,9 @@ export class NewArrivalComponent implements OnInit {
   constructor(
     private productService: ProductsService,
   ){}
+  
+  @Output()
+  countOfItems: EventEmitter<number> = new EventEmitter<number>();
 
   product?: Subscription;
 
@@ -29,7 +32,7 @@ export class NewArrivalComponent implements OnInit {
   ngOnInit(): void {
     this.product = this.productService.get().subscribe({
         next: (data: TProducts[]):void =>{
-          this.newArrival = data.slice(0,4);
+          this.newArrival = data.slice(0,5);
         }
       })
   }

@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { CartLocalstorageService } from '../../../services/localstorage/cart-localstorage/cart-localstorage.service';
 
 @Component({
   selector: 'app-global-header',
@@ -9,8 +10,15 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class GlobalHeaderComponent {
 
+  constructor(
+    private cartService: CartLocalstorageService,
+  ){}
+
   @Output()
   handleSearchOnChange: EventEmitter<string> = new EventEmitter<string>();
+  
+  @Input()
+  count: number;
 
   onSearch(event: any) {
     this.handleSearchOnChange.emit(event.target.value)

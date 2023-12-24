@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LeftbarComponent } from "../../shared/components/leftbar/leftbar.component";
 import { RouterOutlet } from '@angular/router';
 import { SkeletonComponent } from "../../shared/components/skeleton/skeleton.component";
@@ -11,6 +11,7 @@ import { HomeProductComponent } from "./home-product/home-product.component";
 import { FooterComponent } from "../../shared/components/footer/footer.component";
 import { GlobalHeaderComponent } from "../../shared/components/global-header/global-header.component";
 import { GlobalNavbarComponent } from "../../shared/components/global-navbar/global-navbar.component";
+import { CartLocalstorageService } from '../../services/localstorage/cart-localstorage/cart-localstorage.service';
 
 @Component({
     selector: 'app-home',
@@ -32,6 +33,21 @@ import { GlobalNavbarComponent } from "../../shared/components/global-navbar/glo
         GlobalNavbarComponent
     ]
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+
+    constructor(
+        private cartService: CartLocalstorageService,
+    ){}
+
+
+    count: number;
+
+    ngOnInit(): void {
+        this.count = this.cartService.countOfItems()
+    }
+
+    handleCountOfItemsOnCart = (event: number) => {
+        this.count = event
+    }
 
 }

@@ -1,10 +1,11 @@
 <!-- new arrival -->
 <div class="container pb-16">
     <h2 class="text-2xl font-medium text-gray-800 uppercase mb-6">top new arrival</h2>
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
         <div *ngFor="let item of newArrival">
             <app-product-card
             [product]="item"
+            (countOfItemsOnCart)="countOfItems.emit($event)"
             ></app-product-card>
         </div>
     </div>

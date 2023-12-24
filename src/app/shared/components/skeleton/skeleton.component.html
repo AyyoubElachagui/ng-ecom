@@ -8,7 +8,9 @@
     </div>
 </div>
 <div  *ngIf="!isDashboard">
-    <app-global-header></app-global-header>
+    <app-global-header
+    [count]="countOfItemsOnCart"
+    ></app-global-header>
     <app-global-navbar></app-global-navbar>
     <ng-content></ng-content>
     <app-footer></app-footer>

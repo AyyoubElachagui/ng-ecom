@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LeftbarComponent } from './shared/components/leftbar/leftbar.component';
@@ -24,6 +24,17 @@ import { constants } from './shared/constants/constants';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  constructor(private router: Router) { }
 
+  ngOnInit() {
+      this.router.events.subscribe((evt) => {
+          if (!(evt instanceof NavigationEnd)) {
+              return;
+          }
+          if (typeof window !== 'undefined') {
+            window.scrollTo(0, 0)
+          }
+      });
+  }
 }
