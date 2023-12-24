@@ -21,9 +21,6 @@ export class HomeProductComponent  implements OnInit {
     private productService: ProductsService,
   ){}
 
-  @Output()
-  countOfItems: EventEmitter<number> = new EventEmitter<number>();
-
 
   products: TProducts[];
 

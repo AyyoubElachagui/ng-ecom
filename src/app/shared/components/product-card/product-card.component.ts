@@ -5,6 +5,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CartLocalstorageService } from '../../../services/localstorage/cart-localstorage/cart-localstorage.service';
 import { TCarts } from '../../../services/interfaces/carts.interface';
 import { v4 as uuidv4 } from 'uuid';
+import { Store } from '@ngxs/store';
+import { CartActions } from '../../../store/actions/cart.action';
 
 @Component({
   selector: 'app-product-card',
@@ -19,22 +21,26 @@ import { v4 as uuidv4 } from 'uuid';
 export class ProductCardComponent {
 
   constructor(
-    private cartService: CartLocalstorageService
+    private cartService: CartLocalstorageService,
+    private store: Store
   ){}
 
   @Input()
   product: TProducts;
 
-  @Output()
-  countOfItemsOnCart: EventEmitter<number> = new EventEmitter<number>();
 
   addToCart = () => {
     const cart: TCarts = {
       id: uuidv4(),
-      products: [this.product]
+      products: this.product
     }
     this.cartService.setArray(cart);
-    this.countOfItemsOnCart.emit(this.cartService.countOfItems())
+    this.handleCartStore(cart);
+  }
+
+  private handleCartStore = (cart: TCarts) => {
+    this.store.dispatch(new CartActions.GetCountItemsOnCart())
+    this.store.dispatch(new CartActions.AddIntoCart(cart))
   }
 
   limitedDescription = (): string => {

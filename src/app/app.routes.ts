@@ -8,6 +8,9 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RegisterComponent } from './components/auth/register/register.component';
+import { ShopComponent } from './components/shop/shop.component';
+import { WishlistComponent } from './components/wishlist/wishlist.component';
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 
 export const routes: Routes = [
     {
@@ -25,6 +28,15 @@ export const routes: Routes = [
     {
         path: 'dashboard',
         component: DashboardComponent,
+        canActivate: [AuthGuard]
+    },
+    // {
+    //     path: 'shop',
+    //     component: ShopComponent,
+    // },
+    {
+        path: 'wishlist',
+        component: WishlistComponent,
         canActivate: [AuthGuard]
     },
     {
@@ -46,6 +58,11 @@ export const routes: Routes = [
         path: '', 
         redirectTo: '/home', 
         pathMatch: 'full',
+    },
+    { 
+        path: '**', 
+        pathMatch: 'full',  
+        component: PagenotfoundComponent 
     },
 ];
 

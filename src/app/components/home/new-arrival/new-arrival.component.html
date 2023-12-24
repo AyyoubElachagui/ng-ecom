@@ -5,9 +5,7 @@
         <div *ngFor="let item of newArrival">
             <app-product-card
             [product]="item"
-            (countOfItemsOnCart)="countOfItems.emit($event)"
             ></app-product-card>
         </div>
     </div>
 </div>
-<!-- ./new arrival -->

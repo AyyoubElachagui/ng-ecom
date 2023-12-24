@@ -33,21 +33,6 @@ import { CartLocalstorageService } from '../../services/localstorage/cart-locals
         GlobalNavbarComponent
     ]
 })
-export class HomeComponent implements OnInit {
-
-    constructor(
-        private cartService: CartLocalstorageService,
-    ){}
-
-
-    count: number;
-
-    ngOnInit(): void {
-        this.count = this.cartService.countOfItems()
-    }
-
-    handleCountOfItemsOnCart = (event: number) => {
-        this.count = event
-    }
+export class HomeComponent {
 
 }

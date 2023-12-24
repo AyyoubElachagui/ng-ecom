@@ -1,14 +1,8 @@
-<app-skeleton
-[countOfItemsOnCart]="count"
->
+<app-skeleton>
     <app-banner></app-banner>
     <app-features></app-features>
     <app-categories></app-categories>
-    <app-new-arrival
-    (countOfItems)="handleCountOfItemsOnCart($event)"
-    ></app-new-arrival>
+    <app-new-arrival></app-new-arrival>
     <app-ads></app-ads>
-    <app-home-product
-    (countOfItems)="handleCountOfItemsOnCart($event)"
-    ></app-home-product>
+    <app-home-product></app-home-product>
 </app-skeleton>
