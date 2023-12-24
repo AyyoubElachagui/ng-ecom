@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ProductsService } from '../../../services/api/products/products.service';
 import { TProducts } from '../../../services/interfaces/products.interface';
 import { CommonModule, NgFor } from '@angular/common';
@@ -27,7 +27,7 @@ export class HomeProductComponent  implements OnInit {
   ngOnInit(): void {
     this.productService.get().subscribe({
         next: (data: TProducts[]):void =>{
-          this.products = data.slice(3, 11);
+          this.products = data.slice(3,13);
         }
       })
   }

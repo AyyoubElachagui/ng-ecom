@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { AuthLocalstorageService } from '../../../services/localstorage/auth-localstorage/auth-localstorage.service';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { SkeletonComponent } from "../../../shared/components/skeleton/skeleton.component";
+import { CartLocalstorageService } from '../../../services/localstorage/cart-localstorage/cart-localstorage.service';
 
 @Component({
     selector: 'app-login',

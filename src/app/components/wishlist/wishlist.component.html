@@ -1,0 +1,17 @@
+<app-skeleton>
+    <div class="mx-20 my-10">
+        <div class="container grid grid-cols-12 items-start gap-6 pt-4 pb-16">
+            <div class="col-span-3">
+                <app-wishlist-sidebar></app-wishlist-sidebar>
+            </div>
+            <div class="col-span-9 space-y-4">
+                <div *ngFor="let item of cart">
+                    <app-wishlist-card
+                    [cart]="item"
+                    (onDeleteFromCart)="deleteFormCart(item.id)"
+                    ></app-wishlist-card>
+                </div>
+            </div>
+        </div>
+    </div>
+</app-skeleton>

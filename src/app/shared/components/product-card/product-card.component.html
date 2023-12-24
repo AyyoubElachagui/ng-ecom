@@ -1,7 +1,10 @@
 <div class="bg-white shadow rounded overflow-hidden group">
-    <div class="relative">
-        <img [src]="product.image" [alt]="product.title" class="card-image">
-    </div>
+    <a [routerLink]="'/products/'+product.id">
+        <div class="relative left-1/4">
+            <img [src]="product.image" [alt]="product.title" class="card-image">
+        </div>
+    </a>
+
     <div class="pt-4 pb-3 px-4">
         <a href="#">
             <h4 class="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">{{limitedDescription()}}</h4>
@@ -24,7 +27,8 @@
             <div class="text-xs text-gray-500 ml-3">(150)</div>
         </div>
     </div>
-    <a [routerLink]="'/products/'+product.id"
+    <button
+        (click)="addToCart()"
         class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition">Add
-        to cart</a>
+        to cart</button>
 </div>
