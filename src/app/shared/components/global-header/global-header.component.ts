@@ -22,7 +22,7 @@ export class GlobalHeaderComponent {
 
 
   @Select((state: {cart: CartStateModel}) => state.cart.countItems)
-  countItems$!: Observable<number>;
+  countItems!: Observable<number>;
   
   constructor(
     private cartService: CartLocalstorageService,
