@@ -16,14 +16,14 @@
             <p class="text-sm md:text-xl text-primary font-semibold">${{product.price}}</p>
             <p class="text-xs mt-2 md:text-sm text-gray-400 line-through">${{product.price + 10 | number: '2.0-2'}}</p>
         </div>
-        <div class="flex-col justify-start md:flex items-center">
+        <div class="flex-col md:flex items-start">
             <div class="flex gap-1 text-sm text-yellow-400">
                     <fa-icon  *ngFor="let item of stars; let i = index" [icon]="faStar"></fa-icon>
                     <fa-icon *ngIf="product.rating.rate % 1 !== 0" [icon]="faStarHalfStroke"></fa-icon>
                     <fa-icon  *ngFor="let item of regularStars; let i = index" [icon]="faStarRegular"></fa-icon>
                     <span class="text-xs text-yellow-400">({{product.rating.rate}})</span>
             </div>
-            <div class="text-sm text-gray-500 md:ml-3">({{product.rating.count}})</div>
+            <div class="text-sm text-gray-500">({{product.rating.count}})</div>
         </div>
     </div>
     <button
