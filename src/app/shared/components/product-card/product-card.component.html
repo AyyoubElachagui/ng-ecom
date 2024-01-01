@@ -7,7 +7,8 @@
 
     <div class="pt-4 pb-3 px-4">
         <a href="#">
-            <h4 class="uppercase font-medium text-sm md:text-xl mb-2 text-gray-800 hover:text-primary transition">{{limitedDescription()}}</h4>
+            <h4 class="uppercase font-medium text-sm md:text-xl mb-2 text-gray-800 hover:text-primary transition">
+                {{limitedDescription()}}</h4>
         </a>
         <div class="bg-blue-100 rounded-md text-blue-500 px-3 py-1 text-center text-xs font-bold custom-w">
             {{product.category}}
@@ -18,16 +19,46 @@
         </div>
         <div class="flex-col md:flex items-start">
             <div class="flex gap-1 text-sm text-yellow-400">
-                    <fa-icon  *ngFor="let item of stars; let i = index" [icon]="faStar"></fa-icon>
-                    <fa-icon *ngIf="product.rating.rate % 1 !== 0" [icon]="faStarHalfStroke"></fa-icon>
-                    <fa-icon  *ngFor="let item of regularStars; let i = index" [icon]="faStarRegular"></fa-icon>
-                    <span class="text-xs text-yellow-400">({{product.rating.rate}})</span>
+                <fa-icon *ngFor="let item of stars; let i = index" [icon]="faStar"></fa-icon>
+                <fa-icon *ngIf="product.rating.rate % 1 !== 0" [icon]="faStarHalfStroke"></fa-icon>
+                <fa-icon *ngFor="let item of regularStars; let i = index" [icon]="faStarRegular"></fa-icon>
+                <span class="text-xs text-yellow-400">({{product.rating.rate}})</span>
             </div>
             <div class="text-sm text-gray-500">({{product.rating.count}})</div>
         </div>
     </div>
-    <button
-        (click)="addToCart()"
-        class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition">Add
-        to cart</button>
+    <div class="flex">
+        <button (click)="addToCart()"
+            class="block text-white w-full py-1 rounded-bl pl-2 pr-3 border border-r-white bg-primary hover:shadow-lg transition">
+            Pay now
+        </button>
+        <button (click)="addToWishList()"
+            class="block py-1 pl-2 pr-3 border border-r-white bg-primary hover:shadow-lg transition">
+            <svg fill="#ffffff" height="30px" width="30px" version="1.1" id="XMLID_298_"
+                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24"
+                xml:space="preserve">
+                <g id="SVGRepo_bgCarrier" stroke-width="0" />
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+                <g id="SVGRepo_iconCarrier">
+                    <g id="favorite">
+                        <path
+                            d="M12,23.2l-0.6-0.5C8.7,20.7,0,13.5,0,7.3C0,3.8,2.9,1,6.5,1c2.2,0,4.3,1.1,5.5,2.9l0,0l0,0C13.2,2.1,15.3,1,17.5,1 C21.1,1,24,3.8,24,7.3c0,6.3-8.7,13.4-11.4,15.5L12,23.2z M6.5,2.9C4,2.9,2,4.8,2,7.2c0,4.1,5.1,9.5,10,13.4 c4.9-3.9,10-9.3,10-13.4c0-2.4-2-4.3-4.5-4.3c-1.6,0-3,0.8-3.8,2L12,7.6L10.3,5C9.5,3.7,8.1,2.9,6.5,2.9z" />
+                    </g>
+                </g>
+
+            </svg>
+        </button>
+        <button (click)="addToCart()"
+            class="block py-1 pl-2 pr-3 rounded-br border border-r-white bg-primary hover:shadow-lg transition">
+            <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="">
+                <g id="SVGRepo_bgCarrier" stroke-width="0" />
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+                <g id="SVGRepo_iconCarrier">
+                    <path
+                        d="M21 5L19 12H7.37671M20 16H8L6 3H3M16 5.5H13.5M13.5 5.5H11M13.5 5.5V8M13.5 5.5V3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z"
+                        stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </g>
+            </svg>
+        </button>
+    </div>
 </div>

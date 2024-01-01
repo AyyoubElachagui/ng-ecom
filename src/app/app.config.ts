@@ -7,6 +7,7 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { CartState } from './store/states/cart.state';
+import { WishListState } from './store/states/wish_list.state';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,7 +16,8 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch()),
     importProvidersFrom(
       NgxsModule.forRoot([
-        CartState
+        CartState,
+        WishListState
       ]),
       NgxsReduxDevtoolsPluginModule.forRoot()
     )

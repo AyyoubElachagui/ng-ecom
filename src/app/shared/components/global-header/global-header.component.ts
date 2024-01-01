@@ -6,6 +6,8 @@ import { CartStateModel } from '../../../store/states/cart.state';
 import { Observable } from 'rxjs';
 import { CartActions } from '../../../store/actions/cart.action';
 import { CommonModule } from '@angular/common';
+import { WishListStateModel } from '../../../store/states/wish_list.state';
+import { WishListActions } from '../../../store/actions/wish_list.action';
 
 @Component({
   selector: 'app-global-header',
@@ -22,13 +24,16 @@ export class GlobalHeaderComponent {
 
 
   @Select((state: {cart: CartStateModel}) => state.cart.countItems)
-  countItems!: Observable<number>;
+  countCartItems!: Observable<number>;
+
+  @Select((state: {wishlist: WishListStateModel}) => state.wishlist.countItems)
+  countWishlistItems!: Observable<number>;
   
   constructor(
-    private cartService: CartLocalstorageService,
     private store: Store
   ){
     store.dispatch(new CartActions.GetCountItemsOnCart())
+    store.dispatch(new WishListActions.GetCountItemsOnWishList())
   }
 
   @Output()
