@@ -35,8 +35,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', Validators.required)
+      email: new FormControl('eve.holt@reqres.in', [Validators.required, Validators.email]),
+      password: new FormControl('cityslicka', Validators.required)
     });
     const token = this.authLSService.get();
     if(token !== null){
