@@ -15,6 +15,7 @@ import { TWishList } from '../../../services/interfaces/wishlist.interface';
 import { WishListActions } from '../../../store/actions/wish_list.action';
 import { UserLocalstorageService } from '../../../services/localstorage/user-localstorage/user-localstorage.service';
 import { AuthLocalstorageService } from '../../../services/localstorage/auth-localstorage/auth-localstorage.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product-card',
@@ -37,7 +38,8 @@ export class ProductCardComponent implements OnInit {
     private wishlistService: WishlistLocalstorageService,
     private authLSService: AuthLocalstorageService,
     private router: Router,
-    private store: Store
+    private store: Store,
+    private toastr: ToastrService
   ){
 
   }
@@ -123,6 +125,7 @@ export class ProductCardComponent implements OnInit {
     this.wishlistService.setArray(wishlist);
     this.handleAddWishListStore(wishlist);
     this.handleIsFavorite();
+    this.toastr.success(`this product "${this.product.title}"`, 'Added into wishlist');
   }
 
   deleteFromWishList = () => {
@@ -134,6 +137,7 @@ export class ProductCardComponent implements OnInit {
     this.wishlistService.deleteFromArray(productOnWishList[0].id);
     this.handleDeleteWishListStore();
     this.handleIsFavorite();
+    this.toastr.info(`this product "${this.product.title}"`, 'Deleted from wishlist');
   }
 
   private handleAddCartStore = (cart: TCarts) => {

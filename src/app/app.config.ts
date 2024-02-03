@@ -8,6 +8,8 @@ import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { CartState } from './store/states/cart.state';
 import { WishListState } from './store/states/wish_list.state';
+import { provideToastr } from 'ngx-toastr';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,6 +22,8 @@ export const appConfig: ApplicationConfig = {
         WishListState
       ]),
       NgxsReduxDevtoolsPluginModule.forRoot()
-    )
+    ),
+    provideAnimations(), 
+    provideToastr(),
   ]
 };
