@@ -13,9 +13,7 @@ import { faStar as faStarRegular } from '@fortawesome/free-regular-svg-icons';
 import { WishlistLocalstorageService } from '../../../services/localstorage/wishlistLocalstorage/wishlist-localstorage.service';
 import { TWishList } from '../../../services/interfaces/wishlist.interface';
 import { WishListActions } from '../../../store/actions/wish_list.action';
-import { UserLocalstorageService } from '../../../services/localstorage/user-localstorage/user-localstorage.service';
 import { AuthLocalstorageService } from '../../../services/localstorage/auth-localstorage/auth-localstorage.service';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product-card',
@@ -23,7 +21,7 @@ import { ToastrService } from 'ngx-toastr';
   imports: [
     CommonModule,
     RouterLink, RouterLinkActive,
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.css'
@@ -39,9 +37,7 @@ export class ProductCardComponent implements OnInit {
     private authLSService: AuthLocalstorageService,
     private router: Router,
     private store: Store,
-    private toastr: ToastrService
   ){
-
   }
   
   isFavorite: boolean = false;
@@ -125,7 +121,6 @@ export class ProductCardComponent implements OnInit {
     this.wishlistService.setArray(wishlist);
     this.handleAddWishListStore(wishlist);
     this.handleIsFavorite();
-    this.toastr.success(`this product "${this.product.title}"`, 'Added into wishlist');
   }
 
   deleteFromWishList = () => {
@@ -137,7 +132,6 @@ export class ProductCardComponent implements OnInit {
     this.wishlistService.deleteFromArray(productOnWishList[0].id);
     this.handleDeleteWishListStore();
     this.handleIsFavorite();
-    this.toastr.info(`this product "${this.product.title}"`, 'Deleted from wishlist');
   }
 
   private handleAddCartStore = (cart: TCarts) => {
