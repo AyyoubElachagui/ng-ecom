@@ -1,4 +1,4 @@
-import { Component, Input, } from '@angular/core';
+import { Component, Input, OnInit, } from '@angular/core';
 import { TProducts } from '../../../services/interfaces/products.interface';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
@@ -27,7 +27,7 @@ import { AuthLocalstorageService } from '../../../services/localstorage/auth-loc
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.css'
 })
-export class ProductCardComponent {
+export class ProductCardComponent implements OnInit {
   faStar = faStar;
   faStarHalfStroke = faStarHalfStroke;
   faStarRegular = faStarRegular;
@@ -41,10 +41,41 @@ export class ProductCardComponent {
   ){
 
   }
+  
+  isFavorite: boolean = false;
+  isCart: boolean = false;
+  uuid: number = uuidv4();
+
+  ngOnInit(): void {
+    this.handleIsFavorite();
+    this.handleIsOnCart();
+  }
 
   @Input()
   product: TProducts;
 
+
+  handleIsFavorite = () => {
+    if(!this.chackIfUserLoggedIn()){
+      return;
+    }
+    const productOnWishList = this.wishlistService.getArray().filter((e) => e.products.id == this.product.id);
+    if(productOnWishList.length == 1){
+      this.isFavorite = true;
+    }else{
+      this.isFavorite = false;
+    }
+  }
+
+
+  handleIsOnCart = () => {
+    const productOnCart = this.cartService.getArray().filter((e) => e.products.id == this.product.id);
+    if(productOnCart.length == 1){
+      this.isCart = true;
+    }else{
+      this.isCart = false;
+    }
+  }
 
   addToCart = () => {
     const cart: TCarts = {
@@ -52,33 +83,78 @@ export class ProductCardComponent {
       products: this.product
     }
     this.cartService.setArray(cart);
-    this.handleCartStore(cart);
+    this.handleAddCartStore(cart);
+    this.handleIsOnCart();
+  }
+  
+  DeleteFromCart = () => {
+    const productOnCart = this.cartService.getArray().filter((e) => e.products.id == this.product.id);
+    this.cartService.deleteFromArray(productOnCart[0].id);
+    this.handleDeleteCartStore();
+    this.handleIsOnCart();
+  }
+
+  chackIfUserLoggedIn = (): boolean => {
+    const token = this.authLSService.get();
+    if(token === null){
+      return false;
+    }
+    return true;
+  } 
+
+  handleWishList = () => {
+    if(this.isFavorite == true){
+      this.deleteFromWishList();
+      return;
+    }
+    this.addToWishList();
   }
 
   addToWishList = () => {
-
-    const token = this.authLSService.get();
-    if(token === null){
+    if(!this.chackIfUserLoggedIn()){
       this.router.navigateByUrl('/login');
       return;
     }
 
     const wishlist: TWishList = {
-      id: uuidv4(),
+      id: this.uuid,
       products: this.product
     }
     this.wishlistService.setArray(wishlist);
-    this.handleWishListStore(wishlist);
+    this.handleAddWishListStore(wishlist);
+    this.handleIsFavorite();
   }
 
-  private handleCartStore = (cart: TCarts) => {
+  deleteFromWishList = () => {
+    if(!this.chackIfUserLoggedIn()){
+      this.router.navigateByUrl('/login');
+      return;
+    }
+    const productOnWishList = this.wishlistService.getArray().filter((e) => e.products.id == this.product.id)
+    this.wishlistService.deleteFromArray(productOnWishList[0].id);
+    this.handleDeleteWishListStore();
+    this.handleIsFavorite();
+  }
+
+  private handleAddCartStore = (cart: TCarts) => {
     this.store.dispatch(new CartActions.GetCountItemsOnCart())
     this.store.dispatch(new CartActions.AddIntoCart(cart))
   }
+  
 
-  private handleWishListStore = (wishlist: TWishList) => {
+  private handleDeleteCartStore = () => {
+    this.store.dispatch(new CartActions.GetCountItemsOnCart())
+    this.store.dispatch(new CartActions.DeleteItemFromCart(this.product.id))
+  }
+
+  private handleAddWishListStore = (wishlist: TWishList) => {
     this.store.dispatch(new WishListActions.GetCountItemsOnWishList())
     this.store.dispatch(new WishListActions.AddIntoWishList(wishlist))
+  }
+
+  private handleDeleteWishListStore = () => {
+    this.store.dispatch(new WishListActions.GetCountItemsOnWishList())
+    this.store.dispatch(new WishListActions.DeleteItemFromWishList(this.product.id))
   }
 
   get stars() {
@@ -89,7 +165,7 @@ export class ProductCardComponent {
     return Array(Math.floor( 5 - this.product.rating.rate)).fill(0);
   }
 
-  limitedDescription = (): string => {
-    return this.product.title.length > 12 ? this.product.title.substring(0, 12) + '...' : this.product.title;
+  limitedTitle = (): string => {
+    return this.product.title.length > 20 ? this.product.title.substring(0, 20) + '...' : this.product.title;
   }
 }

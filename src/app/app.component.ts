@@ -6,9 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LeftbarComponent } from './shared/components/leftbar/leftbar.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JwtInterceptor } from './helpers/http.interceptor';
-import { TUserRes } from './services/interfaces/res/user-res.interface';
-import { LocalStorageService } from './services/localstorage/localstorage.service';
-import { constants } from './shared/constants/constants';
 
 @Component({
   selector: 'app-root',

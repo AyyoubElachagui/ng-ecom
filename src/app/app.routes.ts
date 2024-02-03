@@ -47,7 +47,6 @@ export const routes: Routes = [
     {
         path: 'products/:productId',
         component: ProductsDetailsComponent,
-        canActivate: [AuthGuard]
     },
     {
         path: 'users/manager',
