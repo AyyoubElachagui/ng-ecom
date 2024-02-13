@@ -190,6 +190,7 @@
         <div class="col-span-3">
             <app-shop-filter 
             (onSortingChanged)="onSortingChanged($event)"
+            (onReloadData)="loadAllProducts()"
             />
             <div class="grid md:grid-cols-3 grid-cols-1 gap-6">
                 <div *ngFor="let item of products">

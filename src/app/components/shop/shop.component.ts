@@ -57,12 +57,10 @@ export class ShopComponent implements OnInit {
     sortProduct = (sorting: SortingEnum) => {
         switch (sorting) {
             case SortingEnum.default:
-                console.log("************* :: "+sorting)
                 this.loadAllProducts()
             break
 
             case SortingEnum.lowPrice:
-                console.log("************* :: "+sorting)
                 this.productsItems.subscribe({
                     next: (data: TProducts[]): void => {
                         this.products = data.sort((a, b) => a.price - b.price);
@@ -71,7 +69,6 @@ export class ShopComponent implements OnInit {
             break
 
             case SortingEnum.highPrice:
-                console.log("************* :: "+sorting)
                 this.productsItems.subscribe({
                     next: (data: TProducts[]): void => {
                         this.products = data.sort((a, b) => b.price - a.price);
@@ -81,7 +78,6 @@ export class ShopComponent implements OnInit {
 
 
             case SortingEnum.latestProduct:
-                console.log("************* :: "+sorting)
                 this.productsItems.subscribe({
                     next: (data: TProducts[]): void => {
                         this.products = data.reverse();

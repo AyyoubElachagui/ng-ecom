@@ -18,8 +18,15 @@ export class ShopFilterComponent {
   @Output()
   onSortingChanged: EventEmitter<SortingEnum> = new EventEmitter()
 
+  @Output()
+  onReloadData: EventEmitter<void> = new EventEmitter()
+
   sortingType = (event) => {
     this.onSortingChanged.emit(event.target.value)
+  }
+
+  onReload = () => {
+    this.onReloadData.emit()
   }
 
 }
