@@ -28,7 +28,6 @@ export class NewArrivalComponent implements OnInit {
   @Output()
   countOfItems: EventEmitter<number> = new EventEmitter<number>();
 
-  product?: Subscription;
 
   newArrival: TProducts[];
 
