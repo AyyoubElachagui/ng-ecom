@@ -2,8 +2,11 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ProductsService } from '../../../services/api/products/products.service';
 import { TProducts } from '../../../services/interfaces/products.interface';
 import { CommonModule, NgFor } from '@angular/common';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { ProductCardComponent } from "../../../shared/components/product-card/product-card.component";
+import { Select, Store } from '@ngxs/store';
+import { ProductsActions } from '../../../store/actions/products.action';
+import { ProductsStateModel } from '../../../store/states/products.state';
 
 @Component({
     selector: 'app-new-arrival',
@@ -19,7 +22,7 @@ import { ProductCardComponent } from "../../../shared/components/product-card/pr
 export class NewArrivalComponent implements OnInit {
 
   constructor(
-    private productService: ProductsService,
+    private store: Store,
   ){}
   
   @Output()
@@ -29,12 +32,16 @@ export class NewArrivalComponent implements OnInit {
 
   newArrival: TProducts[];
 
+  @Select((state: {product: ProductsStateModel}) => state.product.featuredItems)
+  productsItems!: Observable<TProducts[]>;
+
   ngOnInit(): void {
-    this.product = this.productService.get().subscribe({
-        next: (data: TProducts[]):void =>{
-          this.newArrival = data.slice(0,5);
-        }
-      })
+    this.store.dispatch(new ProductsActions.GetLimitedFeaturedProducts(0,5))
+    this.productsItems.subscribe({
+      next: (data: TProducts[]):void =>{
+        this.newArrival = data;
+      }
+    })
   }
 
   limitedDescription = (value: string): string => {
