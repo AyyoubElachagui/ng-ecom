@@ -36,7 +36,7 @@ export class NewArrivalComponent implements OnInit {
   productsItems!: Observable<TProducts[]>;
 
   ngOnInit(): void {
-    this.store.dispatch(new ProductsActions.GetLimitedFeaturedProducts(0,5))
+    this.store.dispatch(new ProductsActions.GetLimitedFeaturedProducts(0,7))
     this.productsItems.subscribe({
       next: (data: TProducts[]):void =>{
         this.newArrival = data;
